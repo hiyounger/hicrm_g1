@@ -65,6 +65,12 @@
             <artifactId>ojdbc</artifactId>
             <version>14</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-core</artifactId>
+            <version>2.5.16</version>
+        </dependency>
 
 
 
