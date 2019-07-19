@@ -58,13 +58,14 @@
             <version>28.0-jre</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
+
+        <!-- https://mvnrepository.com/artifact/ojdbc/ojdbc -->
         <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc7</artifactId>
-            <version>12.1.0.1</version>
-            <scope>test</scope>
+            <groupId>ojdbc</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>14</version>
         </dependency>
+
 
 
 
