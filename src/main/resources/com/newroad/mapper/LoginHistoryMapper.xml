@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.LoginHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.LoginHistory">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="LOGIN_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="LOGIN_IP" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LOGIN_STATUS" javaType="java.lang.Short" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, LOGIN_TIME, LOGIN_IP, LOGIN_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_LOGIN_HISTORY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_LOGIN_HISTORY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.LoginHistory">
+    insert into TB_CRM_LOGIN_HISTORY (ID, USER_ID, LOGIN_TIME, 
+      LOGIN_IP, LOGIN_STATUS)
+    values (#{id,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{loginIp,jdbcType=VARCHAR}, #{loginStatus,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.LoginHistory">
+    insert into TB_CRM_LOGIN_HISTORY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME,
+      </if>
+      <if test="loginIp != null">
+        LOGIN_IP,
+      </if>
+      <if test="loginStatus != null">
+        LOGIN_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginStatus != null">
+        #{loginStatus,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.LoginHistory">
+    update TB_CRM_LOGIN_HISTORY
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginStatus != null">
+        LOGIN_STATUS = #{loginStatus,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.LoginHistory">
+    update TB_CRM_LOGIN_HISTORY
+    set USER_ID = #{userId,jdbcType=DECIMAL},
+      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      LOGIN_STATUS = #{loginStatus,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

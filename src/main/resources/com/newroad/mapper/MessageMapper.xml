@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Message">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="TO_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="FROM_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CONTENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="READ_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="SEND_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="STATUS" javaType="java.lang.Short" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TO_USER_ID, FROM_USER_ID, CONTENT, READ_TIME, SEND_TIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_MESSAGE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_MESSAGE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Message">
+    insert into TB_CRM_MESSAGE (ID, TO_USER_ID, FROM_USER_ID, 
+      CONTENT, READ_TIME, SEND_TIME, 
+      STATUS)
+    values (#{id,jdbcType=DECIMAL}, #{toUserId,jdbcType=DECIMAL}, #{fromUserId,jdbcType=DECIMAL}, 
+      #{content,jdbcType=VARCHAR}, #{readTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Message">
+    insert into TB_CRM_MESSAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="toUserId != null">
+        TO_USER_ID,
+      </if>
+      <if test="fromUserId != null">
+        FROM_USER_ID,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="readTime != null">
+        READ_TIME,
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="toUserId != null">
+        #{toUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="fromUserId != null">
+        #{fromUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Message">
+    update TB_CRM_MESSAGE
+    <set>
+      <if test="toUserId != null">
+        TO_USER_ID = #{toUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="fromUserId != null">
+        FROM_USER_ID = #{fromUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="readTime != null">
+        READ_TIME = #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Message">
+    update TB_CRM_MESSAGE
+    set TO_USER_ID = #{toUserId,jdbcType=DECIMAL},
+      FROM_USER_ID = #{fromUserId,jdbcType=DECIMAL},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      READ_TIME = #{readTime,jdbcType=TIMESTAMP},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

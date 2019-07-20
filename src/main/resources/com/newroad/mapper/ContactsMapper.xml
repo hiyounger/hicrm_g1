@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.ContactsMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Contacts">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CREATOR_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="POST" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DEPARTMENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SEX" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="SALTNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TELEPHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="QQ_NO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ZIP_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CUSTOMER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="UPDATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETE_STATUS" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="DELETE_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="DELETE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CREATOR_USER_ID, NAME, POST, DEPARTMENT, SEX, SALTNAME, TELEPHONE, EMAIL, QQ_NO, 
+    ADDRESS, ZIP_CODE, DESCRIPTION, CUSTOMER_ID, CREATE_TIME, UPDATE_TIME, DELETE_STATUS, 
+    DELETE_USER_ID, DELETE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_CONTACTS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_CONTACTS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Contacts">
+    insert into TB_CRM_CONTACTS (ID, CREATOR_USER_ID, NAME, 
+      POST, DEPARTMENT, SEX, 
+      SALTNAME, TELEPHONE, EMAIL, 
+      QQ_NO, ADDRESS, ZIP_CODE, 
+      DESCRIPTION, CUSTOMER_ID, CREATE_TIME, 
+      UPDATE_TIME, DELETE_STATUS, DELETE_USER_ID, 
+      DELETE_TIME)
+    values (#{id,jdbcType=DECIMAL}, #{creatorUserId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{post,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{sex,jdbcType=DECIMAL}, 
+      #{saltname,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{qqNo,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{customerId,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteStatus,jdbcType=DECIMAL}, #{deleteUserId,jdbcType=DECIMAL}, 
+      #{deleteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Contacts">
+    insert into TB_CRM_CONTACTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="creatorUserId != null">
+        CREATOR_USER_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="post != null">
+        POST,
+      </if>
+      <if test="department != null">
+        DEPARTMENT,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="saltname != null">
+        SALTNAME,
+      </if>
+      <if test="telephone != null">
+        TELEPHONE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="qqNo != null">
+        QQ_NO,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="zipCode != null">
+        ZIP_CODE,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="deleteUserId != null">
+        DELETE_USER_ID,
+      </if>
+      <if test="deleteTime != null">
+        DELETE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorUserId != null">
+        #{creatorUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="saltname != null">
+        #{saltname,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qqNo != null">
+        #{qqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteUserId != null">
+        #{deleteUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Contacts">
+    update TB_CRM_CONTACTS
+    <set>
+      <if test="creatorUserId != null">
+        CREATOR_USER_ID = #{creatorUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        POST = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="saltname != null">
+        SALTNAME = #{saltname,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qqNo != null">
+        QQ_NO = #{qqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteUserId != null">
+        DELETE_USER_ID = #{deleteUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteTime != null">
+        DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Contacts">
+    update TB_CRM_CONTACTS
+    set CREATOR_USER_ID = #{creatorUserId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      POST = #{post,jdbcType=VARCHAR},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=DECIMAL},
+      SALTNAME = #{saltname,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      QQ_NO = #{qqNo,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{customerId,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DELETE_STATUS = #{deleteStatus,jdbcType=DECIMAL},
+      DELETE_USER_ID = #{deleteUserId,jdbcType=DECIMAL},
+      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

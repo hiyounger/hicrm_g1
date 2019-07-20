@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Role">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CREATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="ROLENAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ROLENOTE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SORTNUM" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="STATUS" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="UPDATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CREATEBY" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="UPDATEBY" javaType="java.lang.Long" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CREATETIME, ROLENAME, ROLENOTE, SORTNUM, STATUS, UPDATETIME, CREATEBY, UPDATEBY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_SYSTEM_ROLE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_SYSTEM_ROLE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Role">
+    insert into TB_SYSTEM_ROLE (ID, CREATETIME, ROLENAME, 
+      ROLENOTE, SORTNUM, STATUS, 
+      UPDATETIME, CREATEBY, UPDATEBY
+      )
+    values (#{id,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{rolename,jdbcType=VARCHAR}, 
+      #{rolenote,jdbcType=VARCHAR}, #{sortnum,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{createby,jdbcType=DECIMAL}, #{updateby,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Role">
+    insert into TB_SYSTEM_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="rolename != null">
+        ROLENAME,
+      </if>
+      <if test="rolenote != null">
+        ROLENOTE,
+      </if>
+      <if test="sortnum != null">
+        SORTNUM,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME,
+      </if>
+      <if test="createby != null">
+        CREATEBY,
+      </if>
+      <if test="updateby != null">
+        UPDATEBY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolenote != null">
+        #{rolenote,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null">
+        #{sortnum,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=DECIMAL},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Role">
+    update TB_SYSTEM_ROLE
+    <set>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rolename != null">
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolenote != null">
+        ROLENOTE = #{rolenote,jdbcType=VARCHAR},
+      </if>
+      <if test="sortnum != null">
+        SORTNUM = #{sortnum,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null">
+        CREATEBY = #{createby,jdbcType=DECIMAL},
+      </if>
+      <if test="updateby != null">
+        UPDATEBY = #{updateby,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Role">
+    update TB_SYSTEM_ROLE
+    set CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLENOTE = #{rolenote,jdbcType=VARCHAR},
+      SORTNUM = #{sortnum,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=DECIMAL},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      CREATEBY = #{createby,jdbcType=DECIMAL},
+      UPDATEBY = #{updateby,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

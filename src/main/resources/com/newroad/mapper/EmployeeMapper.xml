@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Employee">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="POSITION_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="STATUS" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IMG" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SEX" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TELEPHONE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CREATE_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="UPDATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="UPDATE_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, POSITION_ID, STATUS, NAME, IMG, SEX, EMAIL, TELEPHONE, ADDRESS, CREATE_TIME, 
+    CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID, USER_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_EMPLOYEE
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_EMPLOYEE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Employee">
+    insert into TB_CRM_EMPLOYEE (ID, POSITION_ID, STATUS, 
+      NAME, IMG, SEX, EMAIL, 
+      TELEPHONE, ADDRESS, CREATE_TIME, 
+      CREATE_USER_ID, UPDATE_TIME, UPDATE_USER_ID, 
+      USER_ID)
+    values (#{id,jdbcType=DECIMAL}, #{positionId,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{sex,jdbcType=DECIMAL}, #{email,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=DECIMAL}, 
+      #{userId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Employee">
+    insert into TB_CRM_EMPLOYEE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="positionId != null">
+        POSITION_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="img != null">
+        IMG,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="telephone != null">
+        TELEPHONE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateUserId != null">
+        UPDATE_USER_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="positionId != null">
+        #{positionId,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Employee">
+    update TB_CRM_EMPLOYEE
+    <set>
+      <if test="positionId != null">
+        POSITION_ID = #{positionId,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        IMG = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=DECIMAL},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        UPDATE_USER_ID = #{updateUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Employee">
+    update TB_CRM_EMPLOYEE
+    set POSITION_ID = #{positionId,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      IMG = #{img,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=DECIMAL},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_ID = #{createUserId,jdbcType=DECIMAL},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=DECIMAL},
+      USER_ID = #{userId,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

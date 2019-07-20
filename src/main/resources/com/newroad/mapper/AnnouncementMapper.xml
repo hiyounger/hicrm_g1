@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.AnnouncementMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Announcement">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="ORDER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="TITLE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CONTENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="UPDATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="COLOR" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DEPARTMENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="STATUS" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="ISSHOW" javaType="java.lang.Short" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORDER_ID, USER_ID, TITLE, CONTENT, CREATE_TIME, UPDATE_TIME, COLOR, DEPARTMENT, 
+    STATUS, ISSHOW
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_ANNOUNCEMENT
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_ANNOUNCEMENT
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Announcement">
+    insert into TB_CRM_ANNOUNCEMENT (ID, ORDER_ID, USER_ID, 
+      TITLE, CONTENT, CREATE_TIME, 
+      UPDATE_TIME, COLOR, DEPARTMENT, 
+      STATUS, ISSHOW)
+    values (#{id,jdbcType=DECIMAL}, #{orderId,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, 
+      #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{color,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{status,jdbcType=DECIMAL}, #{isshow,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Announcement">
+    insert into TB_CRM_ANNOUNCEMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="color != null">
+        COLOR,
+      </if>
+      <if test="department != null">
+        DEPARTMENT,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="isshow != null">
+        ISSHOW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="isshow != null">
+        #{isshow,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Announcement">
+    update TB_CRM_ANNOUNCEMENT
+    <set>
+      <if test="orderId != null">
+        ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="color != null">
+        COLOR = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="isshow != null">
+        ISSHOW = #{isshow,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Announcement">
+    update TB_CRM_ANNOUNCEMENT
+    set ORDER_ID = #{orderId,jdbcType=DECIMAL},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      TITLE = #{title,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      COLOR = #{color,jdbcType=VARCHAR},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      ISSHOW = #{isshow,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

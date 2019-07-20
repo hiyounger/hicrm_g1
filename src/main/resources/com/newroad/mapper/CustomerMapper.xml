@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Customer">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="OWNER_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CREATOR_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ORIGIN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ZIP_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="INDUSTRY" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ANNUAL_REVENUE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="OWNERSHIP" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RATING" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="UPDATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETE_STATUS" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="IS_LOCKED" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="DELETE_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="DELETE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, OWNER_USER_ID, CREATOR_USER_ID, NAME, ORIGIN, ADDRESS, ZIP_CODE, INDUSTRY, ANNUAL_REVENUE, 
+    OWNERSHIP, RATING, CREATE_TIME, UPDATE_TIME, DELETE_STATUS, IS_LOCKED, DELETE_USER_ID, 
+    DELETE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_CUSTOMER
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_CUSTOMER
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Customer">
+    insert into TB_CRM_CUSTOMER (ID, OWNER_USER_ID, CREATOR_USER_ID, 
+      NAME, ORIGIN, ADDRESS, 
+      ZIP_CODE, INDUSTRY, ANNUAL_REVENUE, 
+      OWNERSHIP, RATING, CREATE_TIME, 
+      UPDATE_TIME, DELETE_STATUS, IS_LOCKED, 
+      DELETE_USER_ID, DELETE_TIME)
+    values (#{id,jdbcType=DECIMAL}, #{ownerUserId,jdbcType=DECIMAL}, #{creatorUserId,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{zipCode,jdbcType=VARCHAR}, #{industry,jdbcType=VARCHAR}, #{annualRevenue,jdbcType=VARCHAR}, 
+      #{ownership,jdbcType=VARCHAR}, #{rating,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteStatus,jdbcType=DECIMAL}, #{isLocked,jdbcType=DECIMAL}, 
+      #{deleteUserId,jdbcType=DECIMAL}, #{deleteTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Customer">
+    insert into TB_CRM_CUSTOMER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="ownerUserId != null">
+        OWNER_USER_ID,
+      </if>
+      <if test="creatorUserId != null">
+        CREATOR_USER_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="origin != null">
+        ORIGIN,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="zipCode != null">
+        ZIP_CODE,
+      </if>
+      <if test="industry != null">
+        INDUSTRY,
+      </if>
+      <if test="annualRevenue != null">
+        ANNUAL_REVENUE,
+      </if>
+      <if test="ownership != null">
+        OWNERSHIP,
+      </if>
+      <if test="rating != null">
+        RATING,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="isLocked != null">
+        IS_LOCKED,
+      </if>
+      <if test="deleteUserId != null">
+        DELETE_USER_ID,
+      </if>
+      <if test="deleteTime != null">
+        DELETE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="ownerUserId != null">
+        #{ownerUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorUserId != null">
+        #{creatorUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="annualRevenue != null">
+        #{annualRevenue,jdbcType=VARCHAR},
+      </if>
+      <if test="ownership != null">
+        #{ownership,jdbcType=VARCHAR},
+      </if>
+      <if test="rating != null">
+        #{rating,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocked != null">
+        #{isLocked,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteUserId != null">
+        #{deleteUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Customer">
+    update TB_CRM_CUSTOMER
+    <set>
+      <if test="ownerUserId != null">
+        OWNER_USER_ID = #{ownerUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorUserId != null">
+        CREATOR_USER_ID = #{creatorUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        ORIGIN = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null">
+        ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        INDUSTRY = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="annualRevenue != null">
+        ANNUAL_REVENUE = #{annualRevenue,jdbcType=VARCHAR},
+      </if>
+      <if test="ownership != null">
+        OWNERSHIP = #{ownership,jdbcType=VARCHAR},
+      </if>
+      <if test="rating != null">
+        RATING = #{rating,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocked != null">
+        IS_LOCKED = #{isLocked,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteUserId != null">
+        DELETE_USER_ID = #{deleteUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteTime != null">
+        DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Customer">
+    update TB_CRM_CUSTOMER
+    set OWNER_USER_ID = #{ownerUserId,jdbcType=DECIMAL},
+      CREATOR_USER_ID = #{creatorUserId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      ORIGIN = #{origin,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      ZIP_CODE = #{zipCode,jdbcType=VARCHAR},
+      INDUSTRY = #{industry,jdbcType=VARCHAR},
+      ANNUAL_REVENUE = #{annualRevenue,jdbcType=VARCHAR},
+      OWNERSHIP = #{ownership,jdbcType=VARCHAR},
+      RATING = #{rating,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DELETE_STATUS = #{deleteStatus,jdbcType=DECIMAL},
+      IS_LOCKED = #{isLocked,jdbcType=DECIMAL},
+      DELETE_USER_ID = #{deleteUserId,jdbcType=DECIMAL},
+      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
