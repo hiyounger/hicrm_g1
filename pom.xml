@@ -61,9 +61,9 @@
 
         <!-- https://mvnrepository.com/artifact/ojdbc/ojdbc -->
         <dependency>
-            <groupId>ojdbc</groupId>
-            <artifactId>ojdbc</artifactId>
-            <version>14</version>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
         <dependency>
