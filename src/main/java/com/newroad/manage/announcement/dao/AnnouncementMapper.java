@@ -1,6 +1,6 @@
 package com.newroad.manage.announcement.dao;
 
-import com.newroad.system.manage.entity.Announcement;
+import com.newroad.manage.announcement.entity.Announcement;
 
 public interface AnnouncementMapper {
     int deleteByPrimaryKey(Long id);
