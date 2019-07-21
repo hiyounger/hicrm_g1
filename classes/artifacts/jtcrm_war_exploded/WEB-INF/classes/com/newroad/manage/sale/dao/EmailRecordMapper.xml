@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.EmailRecordMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.EmailRecord">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="TO_ADDR" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SUBJECT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CONTENT" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SENDTIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="STATUS" javaType="java.lang.Short" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, TO_ADDR, SUBJECT, CONTENT, SENDTIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_EMAIL_RECORD
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_EMAIL_RECORD
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.EmailRecord">
+    insert into TB_CRM_EMAIL_RECORD (ID, USER_ID, TO_ADDR, 
+      SUBJECT, CONTENT, SENDTIME, 
+      STATUS)
+    values (#{id,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, #{toAddr,jdbcType=VARCHAR}, 
+      #{subject,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.EmailRecord">
+    insert into TB_CRM_EMAIL_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="toAddr != null">
+        TO_ADDR,
+      </if>
+      <if test="subject != null">
+        SUBJECT,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="sendtime != null">
+        SENDTIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="toAddr != null">
+        #{toAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null">
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.EmailRecord">
+    update TB_CRM_EMAIL_RECORD
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="toAddr != null">
+        TO_ADDR = #{toAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        SUBJECT = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null">
+        SENDTIME = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.EmailRecord">
+    update TB_CRM_EMAIL_RECORD
+    set USER_ID = #{userId,jdbcType=DECIMAL},
+      TO_ADDR = #{toAddr,jdbcType=VARCHAR},
+      SUBJECT = #{subject,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      SENDTIME = #{sendtime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

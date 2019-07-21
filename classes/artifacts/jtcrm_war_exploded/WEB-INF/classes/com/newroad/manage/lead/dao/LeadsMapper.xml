@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.LeadsMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Leads">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="OWNER_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CREATOR_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="POSITION" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CONTACTS_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SALTNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MOBILE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="UPDATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DELETE_STATUS" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="DELETE_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="DELETE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="IS_TRANSFORMED" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="TRANSFORM_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CONTACTS_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CUSTOMER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="BUSINESS_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="NEXTSTEP" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="NEXTSTEP_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="HAVE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SOURCE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LEADNOTE" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, OWNER_USER_ID, CREATOR_USER_ID, NAME, POSITION, CONTACTS_NAME, SALTNAME, MOBILE, 
+    EMAIL, CREATE_TIME, UPDATE_TIME, DELETE_STATUS, DELETE_USER_ID, DELETE_TIME, IS_TRANSFORMED, 
+    TRANSFORM_USER_ID, CONTACTS_ID, CUSTOMER_ID, BUSINESS_ID, NEXTSTEP, NEXTSTEP_TIME, 
+    HAVE_TIME, ADDRESS, SOURCE, LEADNOTE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_LEADS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_LEADS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Leads">
+    insert into TB_CRM_LEADS (ID, OWNER_USER_ID, CREATOR_USER_ID, 
+      NAME, POSITION, CONTACTS_NAME, 
+      SALTNAME, MOBILE, EMAIL, 
+      CREATE_TIME, UPDATE_TIME, DELETE_STATUS, 
+      DELETE_USER_ID, DELETE_TIME, IS_TRANSFORMED, 
+      TRANSFORM_USER_ID, CONTACTS_ID, CUSTOMER_ID, 
+      BUSINESS_ID, NEXTSTEP, NEXTSTEP_TIME, 
+      HAVE_TIME, ADDRESS, SOURCE, 
+      LEADNOTE)
+    values (#{id,jdbcType=DECIMAL}, #{ownerUserId,jdbcType=DECIMAL}, #{creatorUserId,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{contactsName,jdbcType=VARCHAR}, 
+      #{saltname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteStatus,jdbcType=DECIMAL}, 
+      #{deleteUserId,jdbcType=DECIMAL}, #{deleteTime,jdbcType=TIMESTAMP}, #{isTransformed,jdbcType=DECIMAL}, 
+      #{transformUserId,jdbcType=DECIMAL}, #{contactsId,jdbcType=DECIMAL}, #{customerId,jdbcType=DECIMAL}, 
+      #{businessId,jdbcType=DECIMAL}, #{nextstep,jdbcType=VARCHAR}, #{nextstepTime,jdbcType=TIMESTAMP}, 
+      #{haveTime,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{leadnote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Leads">
+    insert into TB_CRM_LEADS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="ownerUserId != null">
+        OWNER_USER_ID,
+      </if>
+      <if test="creatorUserId != null">
+        CREATOR_USER_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+      <if test="contactsName != null">
+        CONTACTS_NAME,
+      </if>
+      <if test="saltname != null">
+        SALTNAME,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="deleteUserId != null">
+        DELETE_USER_ID,
+      </if>
+      <if test="deleteTime != null">
+        DELETE_TIME,
+      </if>
+      <if test="isTransformed != null">
+        IS_TRANSFORMED,
+      </if>
+      <if test="transformUserId != null">
+        TRANSFORM_USER_ID,
+      </if>
+      <if test="contactsId != null">
+        CONTACTS_ID,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="businessId != null">
+        BUSINESS_ID,
+      </if>
+      <if test="nextstep != null">
+        NEXTSTEP,
+      </if>
+      <if test="nextstepTime != null">
+        NEXTSTEP_TIME,
+      </if>
+      <if test="haveTime != null">
+        HAVE_TIME,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="source != null">
+        SOURCE,
+      </if>
+      <if test="leadnote != null">
+        LEADNOTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="ownerUserId != null">
+        #{ownerUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorUserId != null">
+        #{creatorUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsName != null">
+        #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="saltname != null">
+        #{saltname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteUserId != null">
+        #{deleteUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isTransformed != null">
+        #{isTransformed,jdbcType=DECIMAL},
+      </if>
+      <if test="transformUserId != null">
+        #{transformUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="contactsId != null">
+        #{contactsId,jdbcType=DECIMAL},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=DECIMAL},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=DECIMAL},
+      </if>
+      <if test="nextstep != null">
+        #{nextstep,jdbcType=VARCHAR},
+      </if>
+      <if test="nextstepTime != null">
+        #{nextstepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="haveTime != null">
+        #{haveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="leadnote != null">
+        #{leadnote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Leads">
+    update TB_CRM_LEADS
+    <set>
+      <if test="ownerUserId != null">
+        OWNER_USER_ID = #{ownerUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="creatorUserId != null">
+        CREATOR_USER_ID = #{creatorUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsName != null">
+        CONTACTS_NAME = #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="saltname != null">
+        SALTNAME = #{saltname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteUserId != null">
+        DELETE_USER_ID = #{deleteUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteTime != null">
+        DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isTransformed != null">
+        IS_TRANSFORMED = #{isTransformed,jdbcType=DECIMAL},
+      </if>
+      <if test="transformUserId != null">
+        TRANSFORM_USER_ID = #{transformUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="contactsId != null">
+        CONTACTS_ID = #{contactsId,jdbcType=DECIMAL},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=DECIMAL},
+      </if>
+      <if test="businessId != null">
+        BUSINESS_ID = #{businessId,jdbcType=DECIMAL},
+      </if>
+      <if test="nextstep != null">
+        NEXTSTEP = #{nextstep,jdbcType=VARCHAR},
+      </if>
+      <if test="nextstepTime != null">
+        NEXTSTEP_TIME = #{nextstepTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="haveTime != null">
+        HAVE_TIME = #{haveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="leadnote != null">
+        LEADNOTE = #{leadnote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Leads">
+    update TB_CRM_LEADS
+    set OWNER_USER_ID = #{ownerUserId,jdbcType=DECIMAL},
+      CREATOR_USER_ID = #{creatorUserId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      CONTACTS_NAME = #{contactsName,jdbcType=VARCHAR},
+      SALTNAME = #{saltname,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DELETE_STATUS = #{deleteStatus,jdbcType=DECIMAL},
+      DELETE_USER_ID = #{deleteUserId,jdbcType=DECIMAL},
+      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      IS_TRANSFORMED = #{isTransformed,jdbcType=DECIMAL},
+      TRANSFORM_USER_ID = #{transformUserId,jdbcType=DECIMAL},
+      CONTACTS_ID = #{contactsId,jdbcType=DECIMAL},
+      CUSTOMER_ID = #{customerId,jdbcType=DECIMAL},
+      BUSINESS_ID = #{businessId,jdbcType=DECIMAL},
+      NEXTSTEP = #{nextstep,jdbcType=VARCHAR},
+      NEXTSTEP_TIME = #{nextstepTime,jdbcType=TIMESTAMP},
+      HAVE_TIME = #{haveTime,jdbcType=TIMESTAMP},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      LEADNOTE = #{leadnote,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
