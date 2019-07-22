@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Product">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CATEGORY_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATOR_USER_ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="COST_PRICE" javaType="java.lang.Double" jdbcType="FLOAT" />
+      <arg column="SUGGESTED_PRICE" javaType="java.lang.Double" jdbcType="FLOAT" />
+      <arg column="DEVELOPMENT_TEAM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DEVELOPMENT_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="LINK" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="UPDATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="DESCRIPTION" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CATEGORY_ID, NAME, CREATOR_USER_ID, COST_PRICE, SUGGESTED_PRICE, DEVELOPMENT_TEAM, 
+    DEVELOPMENT_TIME, LINK, CREATE_TIME, UPDATE_TIME, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_CRM_PRODUCT
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_CRM_PRODUCT
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Product">
+    insert into TB_CRM_PRODUCT (ID, CATEGORY_ID, NAME, 
+      CREATOR_USER_ID, COST_PRICE, SUGGESTED_PRICE, 
+      DEVELOPMENT_TEAM, DEVELOPMENT_TIME, LINK, 
+      CREATE_TIME, UPDATE_TIME, DESCRIPTION
+      )
+    values (#{id,jdbcType=DECIMAL}, #{categoryId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{creatorUserId,jdbcType=DECIMAL}, #{costPrice,jdbcType=FLOAT}, #{suggestedPrice,jdbcType=FLOAT}, 
+      #{developmentTeam,jdbcType=VARCHAR}, #{developmentTime,jdbcType=TIMESTAMP}, #{link,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Product">
+    insert into TB_CRM_PRODUCT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="categoryId != null">
+        CATEGORY_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="creatorUserId != null">
+        CREATOR_USER_ID,
+      </if>
+      <if test="costPrice != null">
+        COST_PRICE,
+      </if>
+      <if test="suggestedPrice != null">
+        SUGGESTED_PRICE,
+      </if>
+      <if test="developmentTeam != null">
+        DEVELOPMENT_TEAM,
+      </if>
+      <if test="developmentTime != null">
+        DEVELOPMENT_TIME,
+      </if>
+      <if test="link != null">
+        LINK,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorUserId != null">
+        #{creatorUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="costPrice != null">
+        #{costPrice,jdbcType=FLOAT},
+      </if>
+      <if test="suggestedPrice != null">
+        #{suggestedPrice,jdbcType=FLOAT},
+      </if>
+      <if test="developmentTeam != null">
+        #{developmentTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="developmentTime != null">
+        #{developmentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Product">
+    update TB_CRM_PRODUCT
+    <set>
+      <if test="categoryId != null">
+        CATEGORY_ID = #{categoryId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorUserId != null">
+        CREATOR_USER_ID = #{creatorUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="costPrice != null">
+        COST_PRICE = #{costPrice,jdbcType=FLOAT},
+      </if>
+      <if test="suggestedPrice != null">
+        SUGGESTED_PRICE = #{suggestedPrice,jdbcType=FLOAT},
+      </if>
+      <if test="developmentTeam != null">
+        DEVELOPMENT_TEAM = #{developmentTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="developmentTime != null">
+        DEVELOPMENT_TIME = #{developmentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="link != null">
+        LINK = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Product">
+    update TB_CRM_PRODUCT
+    set CATEGORY_ID = #{categoryId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      CREATOR_USER_ID = #{creatorUserId,jdbcType=DECIMAL},
+      COST_PRICE = #{costPrice,jdbcType=FLOAT},
+      SUGGESTED_PRICE = #{suggestedPrice,jdbcType=FLOAT},
+      DEVELOPMENT_TEAM = #{developmentTeam,jdbcType=VARCHAR},
+      DEVELOPMENT_TIME = #{developmentTime,jdbcType=TIMESTAMP},
+      LINK = #{link,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

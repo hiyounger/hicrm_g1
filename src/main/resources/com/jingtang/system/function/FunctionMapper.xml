@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newroad.system.user.dao.FunctionMapper">
+  <resultMap id="BaseResultMap" type="com.newroad.system.manage.entity.Function">
+    <constructor>
+      <idArg column="ID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="FUNCCODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FUNCNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FUNCNOTE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FUNCTYPE" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="FUNCURL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ICONCLASS" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ICONURL" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="PARENTID" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="CREATEBY" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="UPDATEBY" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="SORTNUM" javaType="java.lang.Long" jdbcType="DECIMAL" />
+      <arg column="UPDATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="CREATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="STATUS" javaType="java.lang.Long" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, FUNCCODE, FUNCNAME, FUNCNOTE, FUNCTYPE, FUNCURL, ICONCLASS, ICONURL, PARENTID, 
+    CREATEBY, UPDATEBY, SORTNUM, UPDATETIME, CREATETIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_SYSTEM_FUNCTION
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from TB_SYSTEM_FUNCTION
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.newroad.system.manage.entity.Function">
+    insert into TB_SYSTEM_FUNCTION (ID, FUNCCODE, FUNCNAME, 
+      FUNCNOTE, FUNCTYPE, FUNCURL, 
+      ICONCLASS, ICONURL, PARENTID, 
+      CREATEBY, UPDATEBY, SORTNUM, 
+      UPDATETIME, CREATETIME, STATUS
+      )
+    values (#{id,jdbcType=DECIMAL}, #{funccode,jdbcType=VARCHAR}, #{funcname,jdbcType=VARCHAR}, 
+      #{funcnote,jdbcType=VARCHAR}, #{functype,jdbcType=DECIMAL}, #{funcurl,jdbcType=VARCHAR}, 
+      #{iconclass,jdbcType=VARCHAR}, #{iconurl,jdbcType=VARCHAR}, #{parentid,jdbcType=DECIMAL}, 
+      #{createby,jdbcType=DECIMAL}, #{updateby,jdbcType=DECIMAL}, #{sortnum,jdbcType=DECIMAL}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{status,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.newroad.system.manage.entity.Function">
+    insert into TB_SYSTEM_FUNCTION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="funccode != null">
+        FUNCCODE,
+      </if>
+      <if test="funcname != null">
+        FUNCNAME,
+      </if>
+      <if test="funcnote != null">
+        FUNCNOTE,
+      </if>
+      <if test="functype != null">
+        FUNCTYPE,
+      </if>
+      <if test="funcurl != null">
+        FUNCURL,
+      </if>
+      <if test="iconclass != null">
+        ICONCLASS,
+      </if>
+      <if test="iconurl != null">
+        ICONURL,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="createby != null">
+        CREATEBY,
+      </if>
+      <if test="updateby != null">
+        UPDATEBY,
+      </if>
+      <if test="sortnum != null">
+        SORTNUM,
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="funccode != null">
+        #{funccode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcname != null">
+        #{funcname,jdbcType=VARCHAR},
+      </if>
+      <if test="funcnote != null">
+        #{funcnote,jdbcType=VARCHAR},
+      </if>
+      <if test="functype != null">
+        #{functype,jdbcType=DECIMAL},
+      </if>
+      <if test="funcurl != null">
+        #{funcurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconclass != null">
+        #{iconclass,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null">
+        #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=DECIMAL},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=DECIMAL},
+      </if>
+      <if test="sortnum != null">
+        #{sortnum,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newroad.system.manage.entity.Function">
+    update TB_SYSTEM_FUNCTION
+    <set>
+      <if test="funccode != null">
+        FUNCCODE = #{funccode,jdbcType=VARCHAR},
+      </if>
+      <if test="funcname != null">
+        FUNCNAME = #{funcname,jdbcType=VARCHAR},
+      </if>
+      <if test="funcnote != null">
+        FUNCNOTE = #{funcnote,jdbcType=VARCHAR},
+      </if>
+      <if test="functype != null">
+        FUNCTYPE = #{functype,jdbcType=DECIMAL},
+      </if>
+      <if test="funcurl != null">
+        FUNCURL = #{funcurl,jdbcType=VARCHAR},
+      </if>
+      <if test="iconclass != null">
+        ICONCLASS = #{iconclass,jdbcType=VARCHAR},
+      </if>
+      <if test="iconurl != null">
+        ICONURL = #{iconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=DECIMAL},
+      </if>
+      <if test="createby != null">
+        CREATEBY = #{createby,jdbcType=DECIMAL},
+      </if>
+      <if test="updateby != null">
+        UPDATEBY = #{updateby,jdbcType=DECIMAL},
+      </if>
+      <if test="sortnum != null">
+        SORTNUM = #{sortnum,jdbcType=DECIMAL},
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newroad.system.manage.entity.Function">
+    update TB_SYSTEM_FUNCTION
+    set FUNCCODE = #{funccode,jdbcType=VARCHAR},
+      FUNCNAME = #{funcname,jdbcType=VARCHAR},
+      FUNCNOTE = #{funcnote,jdbcType=VARCHAR},
+      FUNCTYPE = #{functype,jdbcType=DECIMAL},
+      FUNCURL = #{funcurl,jdbcType=VARCHAR},
+      ICONCLASS = #{iconclass,jdbcType=VARCHAR},
+      ICONURL = #{iconurl,jdbcType=VARCHAR},
+      PARENTID = #{parentid,jdbcType=DECIMAL},
+      CREATEBY = #{createby,jdbcType=DECIMAL},
+      UPDATEBY = #{updateby,jdbcType=DECIMAL},
+      SORTNUM = #{sortnum,jdbcType=DECIMAL},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
